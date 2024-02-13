@@ -1,5 +1,3 @@
-import { db_places } from "../../../../lib/db_places.pjs";
-import { db_comments } from "../../../../lib/db_comments";
 import { Place } from "../../../../db/models/Place";
 import connectDB from "../../../../db/connect";
 
