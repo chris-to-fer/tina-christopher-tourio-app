@@ -5,6 +5,8 @@ export default async function handler(request, response) {
   await connectDB();
   const { id } = request.query;
 
+  console.log("queryID_______", id);
+
   if (request.method === "GET") {
     const place = await Place.findById(id);
 
@@ -23,8 +25,9 @@ export default async function handler(request, response) {
 
   if (request.method === "PATCH") {
     const alteredPlace = request.body;
+    console.log("body _____", alteredPlace);
     const newPlace = await Place.findByIdAndUpdate(id, {
-      $set: request.body,
+      $set: alteredPlace,
     });
 
     response.status(200).json({ status: `Place ${id} updated!` });

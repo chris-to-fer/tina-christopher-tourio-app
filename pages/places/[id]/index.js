@@ -71,7 +71,7 @@ export default function DetailsPage() {
       </Link>
       <p>{place.description}</p>
       <ButtonContainer>
-        <Link href={`/places/${place.id}/edit`} passHref legacyBehavior>
+        <Link href={`/places/${place._id}/edit`} passHref legacyBehavior>
           <StyledLink>Edit</StyledLink>
         </Link>
         <StyledButton onClick={deletePlace} type="button" variant="delete">
