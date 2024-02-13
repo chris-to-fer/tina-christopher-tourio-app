@@ -34,7 +34,7 @@ export default function DetailsPage() {
   const { isReady } = router;
   const { id } = router.query;
   const {
-    data: { image, name, location, description, mapURL, comments } = {},
+    data: { place } = {},
     isLoading,
     error,
   } = useSWR(`/api/places/${id}`);
@@ -52,7 +52,7 @@ export default function DetailsPage() {
       </Link>
       <ImageContainer>
         <StyledImage
-          src={image}
+          src={place.image}
           priority
           fill
           sizes="(max-width: 768px) 100vw,
@@ -62,21 +62,21 @@ export default function DetailsPage() {
         />
       </ImageContainer>
       <h2>
-        {name}, {location}
+        {place.name}, {place.location}
       </h2>
-      <Link href={mapURL} passHref legacyBehavior>
+      <Link href={place.mapURL} passHref legacyBehavior>
         <StyledLocationLink>Location on Google Maps</StyledLocationLink>
       </Link>
-      <p>{description}</p>
+      <p>{place.description}</p>
       <ButtonContainer>
-        <Link href={`/places/${id}/edit`} passHref legacyBehavior>
+        <Link href={`/places/${place.id}/edit`} passHref legacyBehavior>
           <StyledLink>Edit</StyledLink>
         </Link>
         <StyledButton onClick={deletePlace} type="button" variant="delete">
           Delete
         </StyledButton>
       </ButtonContainer>
-      <Comments locationName={name} comments={comments} />
+      <Comments locationName={place.name} comments={place.comments} />
     </>
   );
 }
