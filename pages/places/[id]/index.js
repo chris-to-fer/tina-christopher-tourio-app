@@ -43,8 +43,13 @@ export default function DetailsPage() {
   if (isLoading) return <h2>Loading...</h2>;
   if (error) return <h2>Error...</h2>;
 
-  function deletePlace() {
+  async function deletePlace() {
     console.log("deleted?");
+
+    await fetch(`/api/places/${id}`, {
+      method: "DELETE",
+    });
+    router.push("/");
   }
 
   return (
