@@ -20,4 +20,9 @@ export default async function handler(request, response) {
 
     response.status(200).json({ place: place /*, comments: comments */ });
   }
+
+  if (request.method === "DELETE") {
+    await Place.findByIdAndDelete(id);
+    response.status(200).json({ status: `Place ${id} successfully deleted.` });
+  }
 }
