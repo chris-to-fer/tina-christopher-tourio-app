@@ -45,8 +45,6 @@ export default function DetailsPage() {
   if (error) return <h2>Error...</h2>;
 
   async function deletePlace() {
-    console.log("deleted?");
-
     await fetch(`/api/places/${id}`, {
       method: "DELETE",
     });
