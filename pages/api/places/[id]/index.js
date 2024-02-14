@@ -6,7 +6,7 @@ export default async function handler(request, response) {
   await connectDB();
   const { id } = request.query;
 
-  // console.log("queryID_______", id);
+  console.log("queryID_______", id);
 
   if (request.method === "GET") {
     const place = await Place.findById(id).populate("comments");
@@ -38,9 +38,14 @@ export default async function handler(request, response) {
     const commentData = request.body;
     const newComment = await Comment.create(commentData);
 
+    await Place.findByIdAndUpdate(
+      id,
+      { $push: { comments: newComment._id } },
+      { new: true }
+    );
     response.status(201).json({ status: "Comment posted" });
-    console.log("comment data:", commentData);
-    console.log("new comment :", newComment);
+
+    console.log("new cmment id: ", newComment._id);
   }
 
   if (request.method === "DELETE") {

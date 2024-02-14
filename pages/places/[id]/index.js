@@ -37,6 +37,7 @@ export default function DetailsPage() {
     data: { place } = {},
     isLoading,
     error,
+    mutate,
   } = useSWR(`/api/places/${id}`);
 
   if (!isReady) return <h2>Not ready...</h2>;
@@ -83,7 +84,12 @@ export default function DetailsPage() {
           Delete
         </StyledButton>
       </ButtonContainer>
-      <Comments locationName={place.name} comments={place.comments} id={id} />
+      <Comments
+        locationName={place.name}
+        comments={place.comments}
+        id={id}
+        mutate={mutate}
+      />
     </>
   );
 }

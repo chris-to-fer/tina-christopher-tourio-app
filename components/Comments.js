@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FormContainer, Input, Label } from "./Form";
 import { StyledButton } from "./StyledButton.js";
 
-export default function Comments({ locationName, comments, id }) {
+export default function Comments({ locationName, comments, id, mutate }) {
   const Article = styled.article`
     display: flex;
     flex-direction: column;
@@ -30,6 +30,7 @@ export default function Comments({ locationName, comments, id }) {
       },
       body: JSON.stringify(data),
     });
+    mutate();
   }
 
   return (
