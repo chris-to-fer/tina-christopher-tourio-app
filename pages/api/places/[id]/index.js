@@ -1,11 +1,12 @@
 import { Place } from "../../../../db/models/Place";
+import { Comment } from "../../../../db/models/Comment";
 import connectDB from "../../../../db/connect";
 
 export default async function handler(request, response) {
   await connectDB();
   const { id } = request.query;
 
-  console.log("queryID_______", id);
+  // console.log("queryID_______", id);
 
   if (request.method === "GET") {
     const place = await Place.findById(id).populate("comments");
@@ -32,6 +33,16 @@ export default async function handler(request, response) {
 
     response.status(200).json({ status: `Place ${id} updated!` });
   }
+
+  if (request.method === "POST") {
+    const commentData = request.body;
+    const newComment = await Comment.create(commentData);
+
+    response.status(201).json({ status: "Comment posted" });
+    console.log("comment data:", commentData);
+    console.log("new comment :", newComment);
+  }
+
   if (request.method === "DELETE") {
     await Place.findByIdAndDelete(id);
     response.status(200).json({ status: `Place ${id} successfully deleted.` });
