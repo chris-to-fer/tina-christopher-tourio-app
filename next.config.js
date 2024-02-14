@@ -14,11 +14,20 @@ const nextConfig = {
     return config;
   },
   images: {
+    domains: [
+      "img.etimg.com",
+      "assets.vogue.com",
+      "m.media-amazon.com",
+      "upload.wikimedia.org",
+      "de.wikipedia.org",
+    ],
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "**.unsplash.**",
+        hostname: "**.wikipedia.**",
         hostname: "images.unsplash.com",
-        port: "",
+        hostname: "*",
       },
     ],
   },
