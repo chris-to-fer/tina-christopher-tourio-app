@@ -8,14 +8,14 @@ export default async function handler(request, response) {
   console.log("queryID_______", id);
 
   if (request.method === "GET") {
-    const place = await Place.findById(id);
+    const place = await Place.findById(id).populate("comments");
 
     if (!place) {
       return response.status(404).json({ status: "Not found" });
     }
 
-    // const comment = place?.comments;
-    // const allCommentIds = comment?.map((comment) => comment.$oid) || [];
+    const comment = place?.comments;
+    const allCommentIds = comment?.map((comment) => comment.$oid) || [];
     // const comments = db_comments.filter((comment) =>
     //   allCommentIds.includes(comment._id.$oid)
     // );
