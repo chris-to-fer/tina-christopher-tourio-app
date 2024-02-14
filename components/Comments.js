@@ -32,6 +32,19 @@ export default function Comments({ locationName, comments, id, mutate }) {
     mutate();
   }
 
+  async function handleClick(id) {
+    const response = await fetch(`/api/places/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(id),
+    });
+
+    mutate();
+    console.log("CLICK", id);
+  }
+
   return (
     <Article>
       <FormContainer onSubmit={handleSubmitComment}>
@@ -44,16 +57,19 @@ export default function Comments({ locationName, comments, id, mutate }) {
       {comments && (
         <>
           <h1> {comments.length} fans commented on this place:</h1>
-          {comments.map(({ name, comment }, idx) => {
+          {comments.map(({ name, comment, _id }, idx) => {
             return (
-              <>
-                <p key={idx}>
+              <div key={idx}>
+                <p>
                   <small>
                     <strong>{name}</strong> commented on {locationName}
                   </small>
                 </p>
                 <span>{comment}</span>
-              </>
+                <p>
+                  <button onClick={() => handleClick(_id)}>❌</button>
+                </p>
+              </div>
             );
           })}
         </>
