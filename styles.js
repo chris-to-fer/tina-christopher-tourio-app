@@ -25,6 +25,10 @@ export default createGlobalStyle`
     background-color: var(--color-blue-dark)
   }
 
+  h1 {
+    color: var(--color-orange-light)
+  }
+
   h2 {
     color: var(--color-orange-dark)
   }

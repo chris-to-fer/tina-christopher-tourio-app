@@ -15,12 +15,13 @@ const ImageContainer = styled.div`
 
 const ButtonContainer = styled.section`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 0.2rem;
 
   & > * {
     flex-grow: 1;
     text-align: center;
+    max-width: 150px;
   }
 `;
 
@@ -77,10 +78,10 @@ export default function DetailsPage() {
       <p>{place.description}</p>
       <ButtonContainer>
         <Link href={`/places/${place._id}/edit`} passHref legacyBehavior>
-          <StyledLink>Edit</StyledLink>
+          <StyledLink>Edit Details</StyledLink>
         </Link>
         <StyledButton onClick={deletePlace} type="button" variant="delete">
-          Delete
+          Delete Location
         </StyledButton>
       </ButtonContainer>
       <Comments

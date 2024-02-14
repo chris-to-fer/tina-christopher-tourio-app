@@ -7,12 +7,13 @@ export default function Comments({ locationName, comments, id, mutate }) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 5px solid black;
-    border-radius: 0.8rem;
+    border: 1px solid var(--color-blue-light);
+    border-radius: var(--border-radius-small);
     padding: 0.5rem;
+    margin-top: 1rem;
     text-align: center;
     p {
-      border-bottom: solid 1px black;
+      border-bottom: solid 1px var(--color-blue-light);
       padding: 20px;
     }
   `;
@@ -46,14 +47,14 @@ export default function Comments({ locationName, comments, id, mutate }) {
           <h1> {comments.length} fans commented on this place:</h1>
           {comments.map(({ name, comment }, idx) => {
             return (
-              <>
-                <p key={idx}>
+              <div key={idx}>
+                <p>
                   <small>
                     <strong>{name}</strong> commented on {locationName}
                   </small>
                 </p>
                 <span>{comment}</span>
-              </>
+              </div>
             );
           })}
         </>
