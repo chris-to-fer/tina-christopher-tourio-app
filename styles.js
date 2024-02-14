@@ -36,4 +36,9 @@ export default createGlobalStyle`
   p {
     color: var(--color-blue-light)
   }
+
+  span {
+    color: var(--color-orange-light)
+
+  }
 `;

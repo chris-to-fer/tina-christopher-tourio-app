@@ -68,7 +68,12 @@ export default function Comments({ locationName, comments, id, mutate }) {
                 </p>
                 <span>{comment}</span>
                 <p>
-                  <button onClick={() => handleClick(_id)}>❌</button>
+                  <StyledButton
+                    variant="deleteComment"
+                    onClick={() => handleClick(_id)}
+                  >
+                    ❌
+                  </StyledButton>
                 </p>
               </div>
             );

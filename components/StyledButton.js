@@ -15,4 +15,10 @@ export const StyledButton = styled.button`
     css`
       color: firebrick;
     `}
+
+  ${({ variant }) =>
+    variant === "deleteComment" &&
+    css`
+      background: rgb(247 245 251 / 60%);
+    `}
 `;
