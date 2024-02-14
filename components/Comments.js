@@ -7,12 +7,13 @@ export default function Comments({ locationName, comments, id, mutate }) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 5px solid black;
-    border-radius: 0.8rem;
+    border: 1px solid var(--color-blue-light);
+    border-radius: var(--border-radius-small);
     padding: 0.5rem;
+    margin-top: 1rem;
     text-align: center;
     p {
-      border-bottom: solid 1px black;
+      border-bottom: solid 1px var(--color-blue-light);
       padding: 20px;
     }
   `;
@@ -67,7 +68,12 @@ export default function Comments({ locationName, comments, id, mutate }) {
                 </p>
                 <span>{comment}</span>
                 <p>
-                  <button onClick={() => handleClick(_id)}>❌</button>
+                  <StyledButton
+                    variant="deleteComment"
+                    onClick={() => handleClick(_id)}
+                  >
+                    ❌
+                  </StyledButton>
                 </p>
               </div>
             );

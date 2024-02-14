@@ -4,24 +4,26 @@ import { StyledButton } from "./StyledButton.js";
 export const FormContainer = styled.form`
   display: grid;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 `;
 
 export const Input = styled.input`
   padding: 0.5rem;
   font-size: inherit;
-  border: 3px solid black;
+  border: 2px solid var(--color-orange-light);
   border-radius: 0.5rem;
 `;
 
 export const Textarea = styled.textarea`
   font-family: inherit;
-  border: 3px solid black;
+  border: 2px solid var(--color-orange-light);
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
 
 export const Label = styled.label`
-  font-weight: bold;
+  font-weight: bolder;
+  color: var(--color-white);
 `;
 
 export default function Form({ onSubmit, formName, defaultData }) {

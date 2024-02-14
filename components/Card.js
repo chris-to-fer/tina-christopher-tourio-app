@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { StyledImage } from "./StyledImage.js";
 
 const Article = styled.article`
-  border: 5px solid black;
-  border-radius: 0.8rem;
+  border: 1px solid var(--color-orange-dark);
+  border-radius: var(--border-radius-small);
   padding: 0.5rem;
+  background: rgb(247 245 251 / 25%);
+  color: var(--color-orange-light);
+  font-weight: bold;
 `;
 
 const ImageContainer = styled.div`
@@ -16,6 +19,15 @@ const ImageContainer = styled.div`
 const Figure = styled.figure`
   position: relative;
   margin: 0;
+`;
+
+const FigCaption = styled.figcaption`
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const Paragraph = styled.p`
+  color: var(--color-orange-light);
 `;
 
 const Anchor = styled.a`
@@ -56,9 +68,12 @@ export default function Card({ name, image, location, id }) {
             alt=""
           />
         </ImageContainer>
-        <figcaption>{name}</figcaption>
+        <FigCaption>
+          <Paragraph>{name}</Paragraph>
+          <Paragraph>📍{location}</Paragraph>
+        </FigCaption>
       </Figure>
-      <p>Location: {location}</p>
+
       <Link href={`places/${id}`} passHref legacyBehavior>
         <Anchor>
           <ScreenReaderOnly>More Info</ScreenReaderOnly>

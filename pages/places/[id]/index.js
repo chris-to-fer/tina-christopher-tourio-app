@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { StyledLink } from "../../../components/StyledLink.js";
 import { StyledButton } from "../../../components/StyledButton.js";
 import { StyledImage } from "../../../components/StyledImage.js";
+import { StyledBackLink } from "../../../components/StyledBackLink.js";
 import Comments from "../../../components/Comments.js";
 
 const ImageContainer = styled.div`
@@ -14,19 +15,20 @@ const ImageContainer = styled.div`
 
 const ButtonContainer = styled.section`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 0.2rem;
 
   & > * {
     flex-grow: 1;
     text-align: center;
+    max-width: 150px;
   }
 `;
 
 const StyledLocationLink = styled(StyledLink)`
   text-align: center;
-  background-color: white;
-  border: 3px solid lightsalmon;
+  background-color: var(--color-blue-light);
+  border: 1px solid var(--color-blue-dark);
 `;
 
 export default function DetailsPage() {
@@ -53,10 +55,10 @@ export default function DetailsPage() {
 
   return (
     <>
-      <Link href={"/"} passHref legacyBehavior>
-        <StyledLink justifySelf="start">back</StyledLink>
-      </Link>
       <ImageContainer>
+        <Link href={"/"} passHref legacyBehavior>
+          <StyledBackLink>&larr; Go back</StyledBackLink>
+        </Link>
         <StyledImage
           src={place.image}
           priority
@@ -76,10 +78,10 @@ export default function DetailsPage() {
       <p>{place.description}</p>
       <ButtonContainer>
         <Link href={`/places/${place._id}/edit`} passHref legacyBehavior>
-          <StyledLink>Edit</StyledLink>
+          <StyledLink>Edit Details</StyledLink>
         </Link>
         <StyledButton onClick={deletePlace} type="button" variant="delete">
-          Delete
+          Delete Location
         </StyledButton>
       </ButtonContainer>
       <Comments
