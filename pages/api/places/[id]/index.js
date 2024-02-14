@@ -1,6 +1,7 @@
 import { Place } from "../../../../db/models/Place";
 import { Comment } from "../../../../db/models/Comment";
 import connectDB from "../../../../db/connect";
+import mongoose from "mongoose";
 
 export default async function handler(request, response) {
   await connectDB();
@@ -44,7 +45,23 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "DELETE") {
-    await Place.findByIdAndDelete(id);
+    const places = await Place.findByIdAndDelete(id);
+    await Comment.deleteMany({
+      _id: { $in: places.comments },
+    });
     response.status(200).json({ status: `Place ${id} successfully deleted.` });
+  }
+
+  if (request.method === "PUT") {
+    await Comment.findByIdAndDelete(request.body);
+    const deleteId = request.body.toString();
+    await Place.findByIdAndUpdate(
+      id,
+      {
+        $pull: { comments: deleteId },
+      },
+      { new: true }
+    );
+    response.status(200).json({ status: "Comment deleted" });
   }
 }
