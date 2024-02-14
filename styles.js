@@ -24,4 +24,12 @@ export default createGlobalStyle`
     font-family: system-ui;
     background-color: var(--color-blue-dark)
   }
+
+  h2 {
+    color: var(--color-orange-dark)
+  }
+
+  p {
+    color: var(--color-blue-light)
+  }
 `;

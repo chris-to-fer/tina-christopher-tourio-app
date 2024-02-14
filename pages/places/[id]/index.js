@@ -25,8 +25,8 @@ const ButtonContainer = styled.section`
 
 const StyledLocationLink = styled(StyledLink)`
   text-align: center;
-  background-color: white;
-  border: 3px solid lightsalmon;
+  background-color: var(--color-orange-light);
+  border: 1px solid var(--color-blue-light);
 `;
 
 export default function DetailsPage() {
@@ -54,7 +54,7 @@ export default function DetailsPage() {
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
-        <StyledLink justifySelf="start">back</StyledLink>
+        <StyledLink justifySelf="end">back</StyledLink>
       </Link>
       <ImageContainer>
         <StyledImage

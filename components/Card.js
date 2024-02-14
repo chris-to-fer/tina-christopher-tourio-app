@@ -26,6 +26,10 @@ const FigCaption = styled.figcaption`
   justify-content: space-evenly;
 `;
 
+const Paragraph = styled.p`
+  color: var(--color-orange-light);
+`;
+
 const Anchor = styled.a`
   &::after {
     content: "";
@@ -65,8 +69,8 @@ export default function Card({ name, image, location, id }) {
           />
         </ImageContainer>
         <FigCaption>
-          <p>{name}</p>
-          <p>📍{location}</p>
+          <Paragraph>{name}</Paragraph>
+          <Paragraph>📍{location}</Paragraph>
         </FigCaption>
       </Figure>
 
