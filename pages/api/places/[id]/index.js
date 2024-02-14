@@ -1,4 +1,5 @@
 import { Place } from "../../../../db/models/Place";
+import { Comment } from "../../../../db/models/Comment";
 import connectDB from "../../../../db/connect";
 
 export default async function handler(request, response) {
@@ -8,14 +9,14 @@ export default async function handler(request, response) {
   console.log("queryID_______", id);
 
   if (request.method === "GET") {
-    const place = await Place.findById(id);
+    const place = await Place.findById(id).populate("comments");
 
     if (!place) {
       return response.status(404).json({ status: "Not found" });
     }
 
-    // const comment = place?.comments;
-    // const allCommentIds = comment?.map((comment) => comment.$oid) || [];
+    const comment = place?.comments;
+    const allCommentIds = comment?.map((comment) => comment.$oid) || [];
     // const comments = db_comments.filter((comment) =>
     //   allCommentIds.includes(comment._id.$oid)
     // );
@@ -32,6 +33,21 @@ export default async function handler(request, response) {
 
     response.status(200).json({ status: `Place ${id} updated!` });
   }
+
+  if (request.method === "POST") {
+    const commentData = request.body;
+    const newComment = await Comment.create(commentData);
+
+    await Place.findByIdAndUpdate(
+      id,
+      { $push: { comments: newComment._id } },
+      { new: true }
+    );
+    response.status(201).json({ status: "Comment posted" });
+
+    console.log("new cmment id: ", newComment._id);
+  }
+
   if (request.method === "DELETE") {
     await Place.findByIdAndDelete(id);
     response.status(200).json({ status: `Place ${id} successfully deleted.` });

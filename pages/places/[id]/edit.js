@@ -9,7 +9,7 @@ export default function EditPage() {
   const { isReady } = router;
   const { id } = router.query;
   const {
-    data: { place },
+    data: { place } = {},
     isLoading,
     error,
     mutate,
