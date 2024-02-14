@@ -6,8 +6,6 @@ export default async function handler(request, response) {
   await connectDB();
   const { id } = request.query;
 
-  console.log("queryID_______", id);
-
   if (request.method === "GET") {
     const place = await Place.findById(id).populate("comments");
 
@@ -26,7 +24,6 @@ export default async function handler(request, response) {
 
   if (request.method === "PATCH") {
     const alteredPlace = request.body;
-    console.log("body _____", alteredPlace);
     const newPlace = await Place.findByIdAndUpdate(id, {
       $set: alteredPlace,
     });
@@ -44,8 +41,6 @@ export default async function handler(request, response) {
       { new: true }
     );
     response.status(201).json({ status: "Comment posted" });
-
-    console.log("new cmment id: ", newComment._id);
   }
 
   if (request.method === "DELETE") {

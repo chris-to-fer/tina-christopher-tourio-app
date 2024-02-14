@@ -21,7 +21,6 @@ export default function Comments({ locationName, comments, id, mutate }) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    console.log("data: ", data);
 
     const response = await fetch(`/api/places/${id}`, {
       method: "POST",
