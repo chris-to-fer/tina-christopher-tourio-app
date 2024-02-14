@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { StyledLink } from "../../../components/StyledLink.js";
 import { StyledButton } from "../../../components/StyledButton.js";
 import { StyledImage } from "../../../components/StyledImage.js";
+import { StyledBackLink } from "../../../components/StyledBackLink.js";
 import Comments from "../../../components/Comments.js";
 
 const ImageContainer = styled.div`
@@ -25,8 +26,8 @@ const ButtonContainer = styled.section`
 
 const StyledLocationLink = styled(StyledLink)`
   text-align: center;
-  background-color: var(--color-orange-light);
-  border: 1px solid var(--color-blue-light);
+  background-color: var(--color-blue-light);
+  border: 1px solid var(--color-blue-dark);
 `;
 
 export default function DetailsPage() {
@@ -53,10 +54,10 @@ export default function DetailsPage() {
 
   return (
     <>
-      <Link href={"/"} passHref legacyBehavior>
-        <StyledLink justifySelf="end">back</StyledLink>
-      </Link>
       <ImageContainer>
+        <Link href={"/"} passHref legacyBehavior>
+          <StyledBackLink>&larr; Go back</StyledBackLink>
+        </Link>
         <StyledImage
           src={place.image}
           priority
